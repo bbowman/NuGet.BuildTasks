@@ -17,7 +17,7 @@ namespace Microsoft.NuGet.Build.Tasks
     /// <summary>
     /// Resolves the assets out of packages in the project.lock.json
     /// </summary>
-    public sealed class ResolveNuGetPackageAssets : Task
+    public sealed class ResolveNuGetPackageAssetsWorkaround : Task
     {
         internal const string NuGetPackageIdMetadata = "NuGetPackageId";
         internal const string NuGetPackageVersionMetadata = "NuGetPackageVersion";
@@ -50,7 +50,7 @@ namespace Microsoft.NuGet.Build.Tasks
         private readonly TryGetRuntimeVersion _tryGetRuntimeVersion = new TryGetRuntimeVersion(TryGetRuntimeVersion);
         private readonly bool _reportExceptionsToMSBuildLogger = true;
 
-        internal ResolveNuGetPackageAssets(FileExists fileExists, TryGetRuntimeVersion tryGetRuntimeVersion)
+        internal ResolveNuGetPackageAssetsWorkaround(FileExists fileExists, TryGetRuntimeVersion tryGetRuntimeVersion)
             : this()
         {
             if (fileExists != null)
@@ -77,7 +77,7 @@ namespace Microsoft.NuGet.Build.Tasks
         /// <summary>
         /// Creates a new <see cref="ResolveNuGetPackageAssets"/>.
         /// </summary>
-        public ResolveNuGetPackageAssets()
+        public ResolveNuGetPackageAssetsWorkaround()
         {
             Log.TaskResources = Strings.ResourceManager;
         }

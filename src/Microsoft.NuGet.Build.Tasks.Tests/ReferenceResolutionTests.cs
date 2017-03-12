@@ -158,8 +158,8 @@ namespace Microsoft.NuGet.Build.Tasks.Tests
 
             var immutableCopyLocalitem = result.CopyLocalItems.Single(i => i.ItemSpec.EndsWith("System.Collections.Immutable.dll"));
 
-            Assert.Equal("System.Collections.Immutable", immutableCopyLocalitem.GetMetadata(ResolveNuGetPackageAssets.NuGetPackageIdMetadata));
-            Assert.Equal("1.1.36", immutableCopyLocalitem.GetMetadata(ResolveNuGetPackageAssets.NuGetPackageVersionMetadata));
+            Assert.Equal("System.Collections.Immutable", immutableCopyLocalitem.GetMetadata(ResolveNuGetPackageAssetsWorkaround.NuGetPackageIdMetadata));
+            Assert.Equal("1.1.36", immutableCopyLocalitem.GetMetadata(ResolveNuGetPackageAssetsWorkaround.NuGetPackageVersionMetadata));
         }
 
 
@@ -228,7 +228,7 @@ namespace Microsoft.NuGet.Build.Tasks.Tests
 
             // We should have references to the package itself plus framework packages
             AssertHelpers.AssertCountOf(4, result.References);
-            Assert.All(result.References, r => Assert.Equal(ResolveNuGetPackageAssets.NuGetSourceType_Package, r.GetMetadata(ResolveNuGetPackageAssets.NuGetSourceType)));
+            Assert.All(result.References, r => Assert.Equal(ResolveNuGetPackageAssetsWorkaround.NuGetSourceType_Package, r.GetMetadata(ResolveNuGetPackageAssetsWorkaround.NuGetSourceType)));
         }
 
         [Fact]
@@ -268,7 +268,7 @@ namespace Microsoft.NuGet.Build.Tasks.Tests
                 targetMoniker: ".NETFramework,Version=v4.5.2",
                 runtimeIdentifier: "");
 
-            var key = ResolveNuGetPackageAssets.NuGetIsFrameworkReference;
+            var key = ResolveNuGetPackageAssetsWorkaround.NuGetIsFrameworkReference;
             var values = result.References.Select(r => r.GetMetadata(key));
             
             Assert.All(result.References, r => Assert.Contains(key, r.MetadataNames.Cast<string>()));
@@ -285,7 +285,7 @@ namespace Microsoft.NuGet.Build.Tasks.Tests
 
             var references = result.References.ToDictionary(
                 r => r.ItemSpec,
-                r => r.GetMetadata(ResolveNuGetPackageAssets.NuGetIsFrameworkReference)
+                r => r.GetMetadata(ResolveNuGetPackageAssetsWorkaround.NuGetIsFrameworkReference)
             );
 
             AssertHelpers.AssertCountOf(4, result.References);

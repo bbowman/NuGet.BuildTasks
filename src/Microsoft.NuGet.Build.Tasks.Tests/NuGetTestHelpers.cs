@@ -67,10 +67,10 @@ namespace Microsoft.NuGet.Build.Tasks.Tests
                 }
 
                 // Don't require the packages be restored on the machine
-                ResolveNuGetPackageAssets task = null;
+                ResolveNuGetPackageAssetsWorkaround task = null;
                 FileExists fileExists = path => filesInPackages.Contains(path) || File.Exists(path);
 
-                task = new ResolveNuGetPackageAssets(fileExists, tryGetRuntimeVersion);
+                task = new ResolveNuGetPackageAssetsWorkaround(fileExists, tryGetRuntimeVersion);
                 var sw = new StringWriter();
                 task.BuildEngine = new MockBuildEngine(sw);
 

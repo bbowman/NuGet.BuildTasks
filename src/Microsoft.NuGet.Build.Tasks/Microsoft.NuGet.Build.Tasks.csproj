@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Microsoft.NuGet.Build.Tasks</RootNamespace>
-    <AssemblyName>Microsoft.NuGet.Build.Tasks</AssemblyName>
+    <AssemblyName>Microsoft.NuGet.Build.Tasks.Workaround</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
